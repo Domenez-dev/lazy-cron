@@ -299,39 +299,52 @@ func (l *ListView) renderHeader() string {
 }
 
 func (l *ListView) renderRow(j *cron.Job, selected bool) string {
-	status := styles.EnabledStyle.Render("*")
+	statusChar := "*"
 	if j.Disabled {
-		status = styles.DisabledStyle.Render("-")
+		statusChar = "-"
 	}
 
-	var src string
+	srcText := "user"
 	switch j.Source {
-	case cron.SourceUser:
-		src = styles.UserStyle.Render("user   ")
 	case cron.SourceSystem:
-		src = styles.SystemStyle.Render("system ")
+		srcText = "system"
 	case cron.SourceCrond:
-		src = styles.CrondStyle.Render("cron.d ")
+		srcText = "cron.d"
 	}
 
-	row := fmt.Sprintf("%-4d %s %-8s %-22s %-36s %-14s",
-		j.ID, status, stripAnsi(src),
+	// Plain row — no ANSI codes — for width-correct background rendering
+	plain := fmt.Sprintf("%-4d %s %-8s %-22s %-36s %-14s",
+		j.ID, statusChar, srcText,
 		truncate(j.Schedule, 22),
 		truncate(j.Command, 36),
 		j.NextRunStr(),
 	)
-	parts := strings.SplitN(row, stripAnsi(src), 2)
-	if len(parts) == 2 {
-		row = parts[0] + src + parts[1]
-	}
 
 	if selected {
-		return styles.SelectedRowStyle.Width(l.width).Render(row)
+		return styles.SelectedRowStyle.Width(l.width).Render(plain)
 	}
 	if j.Disabled {
-		return styles.MutedStyle.Width(l.width).Render(row)
+		return styles.MutedStyle.Width(l.width).Render(plain)
 	}
-	return styles.NormalRowStyle.Width(l.width).Render(row)
+
+	// Normal: compose with inline ANSI colors
+	statusStyled := styles.EnabledStyle.Render(statusChar)
+	var srcStyled string
+	switch j.Source {
+	case cron.SourceUser:
+		srcStyled = styles.UserStyle.Render(fmt.Sprintf("%-8s", "user"))
+	case cron.SourceSystem:
+		srcStyled = styles.SystemStyle.Render(fmt.Sprintf("%-8s", "system"))
+	case cron.SourceCrond:
+		srcStyled = styles.CrondStyle.Render(fmt.Sprintf("%-8s", "cron.d"))
+	}
+	idStr := fmt.Sprintf("%-4d ", j.ID)
+	restStr := fmt.Sprintf(" %-22s %-36s %-14s",
+		truncate(j.Schedule, 22),
+		truncate(j.Command, 36),
+		j.NextRunStr(),
+	)
+	return styles.NormalRowStyle.Render(idStr) + statusStyled + " " + srcStyled + styles.NormalRowStyle.Render(restStr)
 }
 
 func (l *ListView) renderHelp() string {
