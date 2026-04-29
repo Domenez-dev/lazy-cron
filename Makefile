@@ -1,9 +1,9 @@
-BINARY      := lazy-chrony
+BINARY      := lazy-cron
 VERSION     := 0.1.0
 BUILD_DIR   := dist
-CMD_PATH    := ./cmd/lazy-chrony
+CMD_PATH    := ./cmd/lazy-cron
 
-LDFLAGS := -ldflags "-s -w -X github.com/domenez-dev/lazy-chrony/internal/ui.AppVersion=$(VERSION)"
+LDFLAGS := -ldflags "-s -w -X github.com/domenez-dev/lazy-cron/internal/ui.AppVersion=$(VERSION)"
 
 .PHONY: all build install clean deb arch tidy
 

@@ -7,8 +7,8 @@ import (
 	"github.com/charmbracelet/bubbles/key"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
-	"github.com/domenez-dev/lazy-chrony/internal/cron"
-	"github.com/domenez-dev/lazy-chrony/internal/styles"
+	"github.com/domenez-dev/lazy-cron/internal/cron"
+	"github.com/domenez-dev/lazy-cron/internal/styles"
 )
 
 type ListKeyMap struct {
@@ -247,7 +247,7 @@ func (l *ListView) listHeight() int {
 func (l *ListView) View() string {
 	var b strings.Builder
 
-	title := styles.TitleStyle.Render(" lazy-chrony ")
+	title := styles.TitleStyle.Render(" lazy-cron ")
 	version := styles.MutedStyle.Render("v" + styles.AppVersion)
 	filter := styles.KeyStyle.Render("[/]") + styles.KeyDescStyle.Render(" filter:"+l.filterModeName())
 	titleBar := lipgloss.JoinHorizontal(lipgloss.Center, title, "  ", version, "   ", filter)

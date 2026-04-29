@@ -5,13 +5,13 @@ import (
 	"os"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/domenez-dev/lazy-chrony/internal/ui"
+	"github.com/domenez-dev/lazy-cron/internal/ui"
 )
 
 func main() {
 	app, err := ui.NewApp()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "lazy-chrony: failed to load cron jobs: %v\n", err)
+		fmt.Fprintf(os.Stderr, "lazy-cron: failed to load cron jobs: %v\n", err)
 		os.Exit(1)
 	}
 
@@ -22,7 +22,7 @@ func main() {
 	)
 
 	if _, err := p.Run(); err != nil {
-		fmt.Fprintf(os.Stderr, "lazy-chrony: runtime error: %v\n", err)
+		fmt.Fprintf(os.Stderr, "lazy-cron: runtime error: %v\n", err)
 		os.Exit(1)
 	}
 }

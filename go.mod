@@ -1,4 +1,4 @@
-module github.com/domenez-dev/lazy-chrony
+module github.com/domenez-dev/lazy-cron
 
 go 1.26.2
 

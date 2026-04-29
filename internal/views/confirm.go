@@ -5,8 +5,8 @@ import (
 	"strings"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/domenez-dev/lazy-chrony/internal/cron"
-	"github.com/domenez-dev/lazy-chrony/internal/styles"
+	"github.com/domenez-dev/lazy-cron/internal/cron"
+	"github.com/domenez-dev/lazy-cron/internal/styles"
 )
 
 type ConfirmView struct {

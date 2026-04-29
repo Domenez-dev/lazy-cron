@@ -3,7 +3,7 @@
 #   Arch:   yay -S nfpm   or   go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest
 #   Debian: grab the .deb from the GitHub releases page
 
-name: "lazy-chrony"
+name: "lazy-cron"
 arch: "amd64"
 platform: "linux"
 version: "0.1.0"
@@ -11,24 +11,24 @@ section: "utils"
 priority: "optional"
 maintainer: "Domenez-dev <bouzara.zakaria.25@gmail.com>"
 description: |
-  lazy-chrony - a terminal UI cron job manager for Linux.
+  lazy-cron - a terminal UI cron job manager for Linux.
   Manage user and system cron jobs interactively from your terminal.
 vendor: ""
-homepage: "https://github.com/domenez-dev/lazy-chrony"
+homepage: "https://github.com/domenez-dev/lazy-cron"
 license: "MIT"
 
 contents:
-  - src: dist/lazy-chrony-linux-amd64
-    dst: /usr/bin/lazy-chrony
+  - src: dist/lazy-cron-linux-amd64
+    dst: /usr/bin/lazy-cron
     file_info:
       mode: 0755
 
-  - src: packaging/lazy-chrony.1
-    dst: /usr/share/man/man1/lazy-chrony.1
+  - src: packaging/lazy-cron.1
+    dst: /usr/share/man/man1/lazy-cron.1
     file_info:
       mode: 0644
 
   - src: README.md
-    dst: /usr/share/doc/lazy-chrony/README.md
+    dst: /usr/share/doc/lazy-cron/README.md
     file_info:
       mode: 0644

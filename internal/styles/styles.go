@@ -40,5 +40,5 @@ var (
 	HelpBarStyle      = lipgloss.NewStyle().Foreground(ColorMuted).BorderTop(true).BorderStyle(lipgloss.NormalBorder()).BorderForeground(ColorBorder).PaddingLeft(1)
 )
 
-const AppName = "lazy-chrony"
+const AppName = "lazy-cron"
 const AppVersion = "0.1.0"

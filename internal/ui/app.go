@@ -4,8 +4,8 @@ import (
 	"fmt"
 
 	tea "github.com/charmbracelet/bubbletea"
-	"github.com/domenez-dev/lazy-chrony/internal/cron"
-	"github.com/domenez-dev/lazy-chrony/internal/views"
+	"github.com/domenez-dev/lazy-cron/internal/cron"
+	"github.com/domenez-dev/lazy-cron/internal/views"
 )
 
 type Screen int
