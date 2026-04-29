@@ -1,0 +1,34 @@
+# Build output
+dist/
+*.exe
+*.out
+
+# Go
+vendor/
+
+# Packaging artifacts
+*.deb
+*.rpm
+*.tar.gz
+*.tar.zst
+
+# Editor / IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.vim/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test / coverage
+coverage.out
+coverage.html
+
+# Secrets / local config
+.env
+*.pem
+*.key
