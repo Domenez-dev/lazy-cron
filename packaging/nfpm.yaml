@@ -1,24 +1,23 @@
-# nfpm.yaml - used by nfpm to build .deb and .rpm packages
-# Install nfpm: https://nfpm.goreleaser.com/install/
-#   Arch:   yay -S nfpm   or   go install github.com/goreleaser/nfpm/v2/cmd/nfpm@latest
-#   Debian: grab the .deb from the GitHub releases page
+# packaging/nfpm.yaml
+# Used by release.sh — placeholders are substituted before running nfpm.
+# Manual local test:
+#   nfpm package --packager deb --config packaging/nfpm.yaml --target dist/
 
 name: "lazy-cron"
-arch: "amd64"
+arch: "__ARCH__"
 platform: "linux"
-version: "0.1.0"
+version: "__VERSION__"
 section: "utils"
 priority: "optional"
-maintainer: "Domenez-dev <bouzara.zakaria.25@gmail.com>"
+maintainer: "domenez-dev <bouzara.zakaria.25@gmail.com>"
 description: |
   lazy-cron - a terminal UI cron job manager for Linux.
   Manage user and system cron jobs interactively from your terminal.
-vendor: ""
 homepage: "https://github.com/domenez-dev/lazy-cron"
 license: "MIT"
 
 contents:
-  - src: dist/lazy-cron-linux-amd64
+  - src: __BIN__
     dst: /usr/bin/lazy-cron
     file_info:
       mode: 0755
