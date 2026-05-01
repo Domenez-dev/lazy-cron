@@ -1,7 +1,8 @@
 <div align="center">
 
-<!-- Replace with your actual logo once you have one -->
-<!-- <img src="assets/logo.png" width="200" alt="lazy-cron logo"> -->
+<img src="assets/logo.png" alt="lazy-cron logo">
+
+--- 
 
 # lazy-cron
 
@@ -12,8 +13,7 @@
 [![GitHub release](https://img.shields.io/github/v/release/domenez-dev/lazy-cron?color=blue)](https://github.com/domenez-dev/lazy-cron/releases/latest)
 [![AUR version](https://img.shields.io/aur/version/lazy-cron)](https://aur.archlinux.org/packages/lazy-cron)
 
-<!-- Replace with actual demo gif once recorded -->
-<!-- ![lazy-cron demo](assets/demo/overview.gif) -->
+![lazy-cron demo](assets/overview.gif)
 
 </div>
 
@@ -21,7 +21,7 @@
 
 ## Why lazy-cron?
 
-Cron syntax is powerful but hard to remember while focusing on other stuff. You shouldn't need to memorize that `0 9 * * 1-5` means "weekdays at 9am" (I googled it tbh) or google what the fifth field does. **lazy-cron** gives you a visual, interactive scheduler right in your terminal, with  human-readable descriptions, vim-style navigation, and zero config required.
+Cron syntax is powerful but unintuitive. You shouldn't need to memorize that `0 9 * * 1-5` means "weekdays at 9am" or google what the fifth field does. **lazy-cron** gives you a visual, interactive scheduler right in your terminal — with live human-readable descriptions, vim-style navigation, and zero config required.
 
 ```
  lazy-cron  v0.1.0   [/] filter:all
@@ -35,8 +35,10 @@ Cron syntax is powerful but hard to remember while focusing on other stuff. You 
  a add  e edit  d del  space toggle  ? help  q quit
 ```
 
-<!-- Replace with actual gif once recorded -->
-<!-- ![Schedule builder](assets/demo/builder.gif) -->
+## Screenshots:
+
+![Schedule builder](assets/builder.png)
+![Schedule builder](assets/manual-input.png)
 
 ---
 
@@ -45,98 +47,58 @@ Cron syntax is powerful but hard to remember while focusing on other stuff. You 
 **Job management**
 - List all cron jobs: user crontab + `/etc/crontab` + `/etc/cron.d/*`
 - Add, edit, delete user cron jobs
-- Enable/disable (comment/uncomment) individual jobs
+- Enable/disable individual jobs with a single keypress
 - Shows next scheduled run time for every job
 
 **Visual schedule builder**
-- Five interactive columns: MINUTE, HOUR, DAY, MONTH, WEEKDAY
-- Each column color-coded and independently scrollable
+- Five interactive columns: MINUTE, HOUR, DAY, MONTH, WEEKDAY — each color-coded
 - Four modes per field: `all` (`*`), `every` (`*/n`), `at` (specific value), `range` (`n-m`)
 - Press `m` to cycle modes, `j/k` to scroll values, `h/l` to move between fields
-- Live human-readable description updates as you build: *"At 09:30, on weekdays (Mon-Fri)"*
+- Live human-readable description: *"At 09:30, on weekdays (Mon-Fri)"*
 
 **Raw mode**
 - Toggle between visual builder and raw text input with `ctrl+e`
-- Schedule presets accessible in both modes with `ctrl+p`
-- Preset cycle: `@reboot`, `@hourly`, `@daily`, `@weekly`, `@monthly`, every 5/15/30 minutes, midnight, noon
+- Schedule presets in both modes with `ctrl+p`
 
 **Navigation**
 - Vim-style keys throughout (`j/k`, `g/G`, `h/l`)
-- Filter jobs by source or status: all, user, system, enabled, disabled
+- Filter by source or status: all, user, system, enabled, disabled
 
 ---
 
 ## Installation
 
-### Arch Linux (AUR)
+### One-liner (recommended)
+
+Works on Arch, Debian, Ubuntu, Fedora, RHEL, and any Linux distro. Auto-detects your system and installs the right package format.
 
 ```bash
-yay -S lazy-cron
-# or
-paru -S lazy-cron
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/domenez-dev/lazy-cron/main/install.sh)"
 ```
 
-Or manually with `makepkg`:
+### Arch Linux (AUR) (Soon..)
+
+
+### Download a package manually
+
+Grab the latest `.deb`, `.rpm`, or binary archive from the [releases page](https://github.com/domenez-dev/lazy-cron/releases).
 
 ```bash
-git clone https://aur.archlinux.org/lazy-cron.git
-cd lazy-cron
-makepkg -si
+# Debian / Ubuntu
+sudo dpkg -i lazy-cron_*.deb
+
+# Fedora / RHEL / CentOS / openSUSE
+sudo rpm -i lazy-cron-*.rpm
 ```
 
-### Arch Linux (from source)
-
-```bash
-git clone https://github.com/domenez-dev/lazy-cron.git
-cd lazy-cron
-make install
-```
-
-### Debian / Ubuntu
-
-Download the latest `.deb` from the [releases page](https://github.com/domenez-dev/lazy-cron/releases):
-
-```bash
-wget https://github.com/domenez-dev/lazy-cron/releases/download/vX.X.X/lazy-cron_X.X.X_amd64.deb
-sudo dpkg -i lazy-cron_X.X.X_amd64.deb
-```
-
-### Fedora / RHEL / CentOS
-
-Via COPR (coming soon):
-
-```bash
-sudo dnf copr enable domenez-dev/lazy-cron
-sudo dnf install lazy-cron
-```
-
-Or from the [releases page](https://github.com/domenez-dev/lazy-cron/releases):
-
-```bash
-sudo dnf install ./lazy-cron-X.X.X-1.x86_64.rpm
-```
-
-### openSUSE
-
-```bash
-sudo rpm -i lazy-cron-X.X.X-1.x86_64.rpm
-```
-
-### From source (any distro)
+### From source
 
 Requires Go 1.21+.
 
 ```bash
 git clone https://github.com/domenez-dev/lazy-cron.git
 cd lazy-cron
-make build      # binary at dist/lazy-cron
-make install    # installs to /usr/local/bin
-```
-
-### Via `go install`
-
-```bash
-go install github.com/domenez-dev/lazy-cron/cmd/lazy-cron@latest
+make install    # builds and installs to /usr/local/bin
 ```
 
 ---
@@ -147,7 +109,7 @@ go install github.com/domenez-dev/lazy-cron/cmd/lazy-cron@latest
 lazy-cron
 ```
 
-Run with `sudo` to also edit system cron jobs:
+Run with `sudo` to also edit system cron jobs in `/etc/crontab` and `/etc/cron.d/`:
 
 ```bash
 sudo lazy-cron
@@ -168,7 +130,7 @@ sudo lazy-cron
 | `d` | Delete selected job |
 | `space` / `t` | Toggle enable/disable |
 | `r` | Reload from disk |
-| `/` | Cycle filter (all, user, system, enabled, disabled) |
+| `/` | Cycle filter |
 | `?` | Toggle help panel |
 | `q` | Quit |
 
@@ -185,15 +147,6 @@ sudo lazy-cron
 | `ctrl+s` | Save |
 | `esc` | Cancel |
 
-### Schedule modes
-
-| Mode | Generates | Example |
-|------|-----------|---------|
-| `all` | `*` | every minute |
-| `every` | `*/n` | every 5 minutes |
-| `at` | `n` | at :30 |
-| `range` | `n-m` | :00 to :29 |
-
 ---
 
 ## Schedule description examples
@@ -208,21 +161,6 @@ sudo lazy-cron
 | `0 0 * 1 *` | At midnight (00:00), in January |
 | `@reboot` | At system startup |
 | `@daily` | Once a day at midnight |
-
----
-
-## Building packages
-
-Requires [nfpm](https://nfpm.goreleaser.com/install/).
-
-```bash
-# Install nfpm on Arch
-yay -S nfpm
-
-make deb        # produces dist/lazy-cron_*.deb
-make rpm        # produces dist/lazy-cron-*.rpm
-make build-all  # linux amd64 + arm64 binaries
-```
 
 ---
 
