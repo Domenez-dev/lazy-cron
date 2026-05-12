@@ -1,3 +1,9 @@
+> [!NOTE]
+> This project was ~90% vibe-coded and is being archived due to maintenance difficulties and a few persistent bugs.
+> I've restarted it from scratch, by the time you read this, the new version is either in active development or already released.
+> If you enjoyed this project or are interested in contributing or trying out the new features, check out the new repository: [lazycron](https://github.com/Domenez-dev/lazycron)
+
+
 <div align="center">
 
 <img src="assets/logo.png" alt="lazy-cron logo">
